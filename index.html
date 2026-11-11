@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nandoLonga | Portafolio Claymorphism</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        clay: {
+                            bg: '#e0e5ec',
+                            darkBg: '#1e232a',
+                            card: '#e6ecf5',
+                            darkCard: '#252b33',
+                            accent: '#6366f1',
+                            accentHover: '#4f46e5'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Font Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font Nunito (Ideal para estética redondeada/Claymorphism) -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body { 
+            font-family: 'Nunito', sans-serif;
+            background-color: #e0e8f5;
+        }
+        .dark body {
+            background-color: #1a1e24;
+        }
+
+        /* Claymorphism CSS Utility Classes */
+        .clay-card {
+            background: #eef3fb;
+            border-radius: 30px;
+            box-shadow: 
+                35px 35px 70px #be3e8,
+                -35px -35px 70px #ffffff,
+                inset -8px -8px 16px rgba(166, 180, 200, 0.4),
+                inset 8px 8px 16px rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        .dark .clay-card {
+            background: #232931;
+            box-shadow: 
+                20px 20px 50px #121519,
+                -20px -20px 50px #2e3743,
+                inset -6px -6px 12px rgba(0, 0, 0, 0.5),
+                inset 6px 6px 12px rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .clay-card-interactive:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 
+                40px 40px 80px #b0c0d8,
+                -40px -40px 80px #ffffff,
+                inset -6px -6px 12px rgba(166, 180, 200, 0.3),
+                inset 6px 6px 12px rgba(255, 255, 255, 1);
+        }
+
+        .dark .clay-card-interactive:hover {
+            box-shadow: 
+                25px 25px 60px #0e1114,
+                -25px -25px 60px #323c4a,
+                inset -4px -4px 8px rgba(0, 0, 0, 0.4),
+                inset 4px 4px 8px rgba(255, 255, 255, 0.08);
+        }
+
+        .clay-btn {
+            background: #6366f1;
+            color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 
+                8px 8px 16px rgba(99, 102, 241, 0.3),
+                inset -4px -4px 8px rgba(0, 0, 0, 0.25),
+                inset 4px 4px 8px rgba(255, 255, 255, 0.35);
+            transition: all 0.2s ease;
+        }
+
+        .clay-btn:hover {
+            transform: scale(1.03);
+            background: #4f46e5;
+        }
+
+        .clay-btn:active {
+            transform: scale(0.97);
+            box-shadow: 
+                inset 4px 4px 8px rgba(0, 0, 0, 0.3),
+                inset -4px -4px 8px rgba(255, 255, 255, 0.2);
+        }
+
+        .clay-btn-secondary {
+            background: #eef3fb;
+            color: #475569;
+            border-radius: 20px;
+            box-shadow: 
+                10px 10px 20px #c0cee2,
+                -10px -10px 20px #ffffff,
+                inset -3px -3px 6px rgba(166, 180, 200, 0.3),
+                inset 3px 3px 6px rgba(255, 255, 255, 0.8);
+        }
+
+        .dark .clay-btn-secondary {
+            background: #232931;
+            color: #cbd5e1;
+            box-shadow: 
+                8px 8px 16px #121519,
+                -8px -8px 16px #2e3743,
+                inset -3px -3px 6px rgba(0, 0, 0, 0.4),
+                inset 3px 3px 6px rgba(255, 255, 255, 0.05);
+        }
+
+        .clay-input {
+            background: #eef3fb;
+            border-radius: 20px;
+            box-shadow: 
+                inset 6px 6px 12px #c0cee2,
+                inset -6px -6px 12px #ffffff;
+            border: 2px solid transparent;
+        }
+
+        .dark .clay-input {
+            background: #1a1e24;
+            box-shadow: 
+                inset 6px 6px 12px #101317,
+                inset -6px -6px 12px #242a33;
+        }
+
+        .clay-badge {
+            background: #eef3fb;
+            border-radius: 12px;
+            box-shadow: 
+                4px 4px 8px #c5d3e8,
+                -4px -4px 8px #ffffff,
+                inset -2px -2px 4px rgba(166, 180, 200, 0.3),
+                inset 2px 2px 4px rgba(255, 255, 255, 0.8);
+        }
+
+        .dark .clay-badge {
+            background: #282e38;
+            box-shadow: 
+                3px 3px 6px #121519,
+                -3px -3px 6px #2e3743;
+        }
+    </style>
+</head>
+<body class="text-slate-700 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- Header / Navbar Claymorphic -->
+    <header class="py-6 px-4 sm:px-8 max-w-7xl mx-auto w-full sticky top-0 z-50 backdrop-blur-md bg-opacity-70">
+        <div class="clay-card py-3 px-6 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-3">
+                <div class="w-12 h-12 clay-btn flex items-center justify-center font-black text-xl tracking-wider">
+                    NL
+                </div>
+                <span class="font-black text-2xl tracking-tight text-slate-800 dark:text-white">nandoLonga</span>
+            </a>
+
+            <!-- Navegación -->
+            <nav class="hidden md:flex items-center space-x-6 font-bold text-sm">
+                <a href="#about" class="hover:text-indigo-600 transition-colors">Sobre Mí</a>
+                <a href="#stats" class="hover:text-indigo-600 transition-colors">Métricas</a>
+                <a href="#projects" class="hover:text-indigo-600 transition-colors">Proyectos</a>
+            </nav>
+
+            <!-- Switch Tema -->
+            <div class="flex items-center space-x-3">
+                <button id="themeToggle" class="w-11 h-11 clay-btn-secondary flex items-center justify-center font-bold text-lg hover:text-indigo-600">
+                    <i id="themeIcon" class="fa-solid fa-moon"></i>
+                </button>
+                <a href="https://github.com/nandoLonga" target="_blank" class="hidden sm:flex clay-btn px-5 py-2.5 font-extrabold text-sm items-center space-x-2">
+                    <i class="fa-brands fa-github text-lg"></i>
+                    <span>GitHub</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="about" class="py-12 md:py-20 px-4 sm:px-8 max-w-7xl mx-auto w-full">
+        <div class="grid md:grid-cols-12 gap-8 items-center">
+            
+            <!-- Presentación Principal -->
+            <div class="md:col-span-7 space-y-6 text-center md:text-left">
+                <div class="inline-block clay-badge px-4 py-2 font-black text-xs text-indigo-600 dark:text-indigo-400 uppercase tracking-widest">
+                    <i class="fa-solid fa-sparkles mr-1"></i> Bienvenido a mi perfil
+                </div>
+
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-800 dark:text-white leading-tight">
+                    Hola, soy <span class="text-indigo-600 dark:text-indigo-400">@nandoLonga</span> 👋
+                </h1>
+
+                <p id="userBio" class="text-base sm:text-lg font-medium text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto md:mx-0">
+                    Cargando perfil desde la API de GitHub...
+                </p>
+
+                <div class="pt-2 flex flex-wrap gap-4 justify-center md:justify-start">
+                    <a href="#projects" class="clay-btn px-8 py-4 font-black text-base flex items-center space-x-3">
+                        <i class="fa-solid fa-cubes text-xl"></i>
+                        <span>Ver Proyectos</span>
+                    </a>
+                    <a href="https://github.com/nandoLonga?tab=repositories" target="_blank" class="clay-btn-secondary px-8 py-4 font-black text-base flex items-center space-x-3 hover:text-indigo-600">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        <span>Repositorios</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Avatar & Clay Card Profile -->
+            <div class="md:col-span-5 flex justify-center">
+                <div class="clay-card p-8 w-full max-w-sm text-center relative">
+                    <div class="relative w-36 h-36 mx-auto mb-6">
+                        <img id="userAvatar" src="https://placehold.co/150x150/6366f1/ffffff?text=NL" alt="Avatar nandoLonga" class="w-full h-full rounded-full object-cover p-2 clay-card">
+                    </div>
+                    
+                    <h2 id="userName" class="text-2xl font-black text-slate-800 dark:text-white">nandoLonga</h2>
+                    <p id="userLogin" class="text-sm font-bold text-indigo-500 mb-6">@nandoLonga</p>
+
+                    <div class="grid grid-cols-2 gap-4 text-xs font-bold text-slate-600 dark:text-slate-300">
+                        <div class="clay-badge p-3 flex flex-col items-center">
+                            <i class="fa-solid fa-location-dot text-indigo-500 text-base mb-1"></i>
+                            <span id="userLocation">--</span>
+                        </div>
+                        <div class="clay-badge p-3 flex flex-col items-center">
+                            <i class="fa-solid fa-boxes-stacked text-indigo-500 text-base mb-1"></i>
+                            <span id="publicReposCount">-- Repos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Métricas / Estadísticas Claymorphic -->
+    <section id="stats" class="py-10 px-4 sm:px-8 max-w-7xl mx-auto w-full">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="clay-card p-6 text-center">
+                <div class="text-3xl sm:text-4xl font-black text-indigo-600 dark:text-indigo-400 mb-1" id="statRepos">--</div>
+                <div class="text-xs font-black uppercase text-slate-500 tracking-wider">Repositorios</div>
+            </div>
+            <div class="clay-card p-6 text-center">
+                <div class="text-3xl sm:text-4xl font-black text-indigo-600 dark:text-indigo-400 mb-1" id="statStars">--</div>
+                <div class="text-xs font-black uppercase text-slate-500 tracking-wider">Estrellas</div>
+            </div>
+            <div class="clay-card p-6 text-center">
+                <div class="text-3xl sm:text-4xl font-black text-indigo-600 dark:text-indigo-400 mb-1" id="statForks">--</div>
+                <div class="text-xs font-black uppercase text-slate-500 tracking-wider">Forks Total</div>
+            </div>
+            <div class="clay-card p-6 text-center">
+                <div class="text-3xl sm:text-4xl font-black text-indigo-600 dark:text-indigo-400 mb-1" id="statFollowers">--</div>
+                <div class="text-xs font-black uppercase text-slate-500 tracking-wider">Seguidores</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proyectos / Repositorios -->
+    <section id="projects" class="py-12 px-4 sm:px-8 max-w-7xl mx-auto w-full flex-1">
+        <div class="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-4">
+            <div>
+                <h2 class="text-3xl font-black text-slate-800 dark:text-white">Proyectos Destacados</h2>
+                <p class="text-slate-600 dark:text-slate-400 font-semibold text-sm">Explora mis desarrollos directamente sincronizados desde GitHub.</p>
+            </div>
+
+            <!-- Buscador estilo Clay -->
+            <div class="relative w-full md:w-80">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input type="text" id="searchInput" placeholder="Buscar repositorio..." class="clay-input w-full pl-11 pr-4 py-3 text-sm font-bold text-slate-700 dark:text-slate-200 focus:outline-none">
+            </div>
+        </div>
+
+        <!-- Indicator Loader -->
+        <div id="loader" class="text-center py-20">
+            <div class="w-16 h-16 clay-btn mx-auto flex items-center justify-center text-2xl mb-4 animate-bounce">
+                <i class="fa-solid fa-shapes"></i>
+            </div>
+            <p class="font-bold text-slate-500">Cargando datos desde GitHub API...</p>
+        </div>
+
+        <!-- Grid Proyectos Clay -->
+        <div id="projectsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 hidden">
+            <!-- Renderizado dinámico -->
+        </div>
+
+        <!-- Mensaje no resultados -->
+        <div id="noResults" class="hidden text-center py-16 clay-card">
+            <i class="fa-solid fa-face-frown text-4xl text-slate-400 mb-3"></i>
+            <p class="font-bold text-slate-500">No se encontraron repositorios con ese criterio.</p>
+        </div>
+    </section>
+
+    <!-- Footer Clay -->
+    <footer class="mt-auto py-10 px-4 sm:px-8 max-w-7xl mx-auto w-full">
+        <div class="clay-card p-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+            <div>
+                <p class="font-black text-lg text-slate-800 dark:text-white">Portafolio @nandoLonga</p>
+                <p class="text-xs font-bold text-slate-500">Diseñado con estética Claymorphism sin frameworks externos.</p>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <a href="https://github.com/nandoLonga" target="_blank" class="w-12 h-12 clay-btn-secondary flex items-center justify-center text-xl hover:text-indigo-600">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+            </div>
+        </div>
+        <p class="text-center text-xs font-extrabold text-slate-400 mt-6">
+            &copy; <span id="currentYear"></span> nandoLonga. Todos los derechos reservados.
+        </p>
+    </footer>
+
+    <!-- Script de Integración Vanilla JS -->
+    <script>
+        const GITHUB_USERNAME = 'nandoLonga';
+        let allRepositories = [];
+
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Manejo de Tema Claro / Oscuro
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+
+        function initTheme() {
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                themeIcon.className = 'fa-solid fa-sun';
+            } else {
+                document.documentElement.classList.remove('dark');
+                themeIcon.className = 'fa-solid fa-moon';
+            }
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+                themeIcon.className = 'fa-solid fa-moon';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+                themeIcon.className = 'fa-solid fa-sun';
+            }
+        });
+
+        initTheme();
+
+        const languageColors = {
+            'JavaScript': '#f1e05a',
+            'TypeScript': '#3178c6',
+            'HTML': '#e34c26',
+            'CSS': '#563d7c',
+            'Python': '#3572A5',
+            'Java': '#b07219',
+            'C++': '#f34b7d',
+            'PHP': '#4F5D95',
+            'Go': '#00ADD8',
+            'Ruby': '#701516'
+        };
+
+        // Obtención de datos del perfil de GitHub
+        async function fetchGitHubProfile() {
+            try {
+                const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}`);
+                if (!response.ok) throw new Error('Usuario no encontrado');
+                const user = await response.json();
+
+                document.getElementById('userAvatar').src = user.avatar_url;
+                document.getElementById('userName').textContent = user.name || user.login;
+                document.getElementById('userLogin').textContent = `@${user.login}`;
+                document.getElementById('userBio').textContent = user.bio || 'Bienvenido a mi repositorio. Aquí encontrarás mis proyectos, código fuente e iniciativas de desarrollo software.';
+                document.getElementById('userLocation').textContent = user.location || 'Global';
+                document.getElementById('publicReposCount').textContent = `${user.public_repos} Repos`;
+
+                document.getElementById('statRepos').textContent = user.public_repos;
+                document.getElementById('statFollowers').textContent = user.followers;
+
+            } catch (error) {
+                console.warn('Error fetching profile:', error);
+                document.getElementById('userBio').textContent = 'Bienvenido a mi espacio de desarrollo e innovación tecnológica en GitHub.';
+            }
+        }
+
+        // Obtención de repositorios de GitHub
+        async function fetchGitHubRepos() {
+            const loader = document.getElementById('loader');
+            const grid = document.getElementById('projectsGrid');
+
+            try {
+                const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`);
+                if (!response.ok) throw new Error('Error al obtener repositorios');
+                
+                allRepositories = await response.json();
+
+                let totalStars = 0;
+                let totalForks = 0;
+
+                allRepositories.forEach(repo => {
+                    totalStars += repo.stargazers_count || 0;
+                    totalForks += repo.forks_count || 0;
+                });
+
+                document.getElementById('statStars').textContent = totalStars;
+                document.getElementById('statForks').textContent = totalForks;
+
+                renderRepositories(allRepositories);
+
+            } catch (error) {
+                console.error(error);
+                loader.innerHTML = `
+                    <div class="clay-card p-6 inline-block text-amber-500 font-bold">
+                        <i class="fa-solid fa-triangle-exclamation text-3xl mb-2"></i>
+                        <p>No se cargaron automáticamente los repositorios.</p>
+                        <a href="https://github.com/${GITHUB_USERNAME}" target="_blank" class="inline-block mt-3 text-indigo-600 underline">Visitar GitHub de @nandoLonga</a>
+                    </div>
+                `;
+            } finally {
+                loader.classList.add('hidden');
+                grid.classList.remove('hidden');
+            }
+        }
+
+        // Renderizado de las tarjetas estilo Claymorphism
+        function renderRepositories(repos) {
+            const grid = document.getElementById('projectsGrid');
+            const noResults = document.getElementById('noResults');
+
+            grid.innerHTML = '';
+
+            if (repos.length === 0) {
+                noResults.classList.remove('hidden');
+                return;
+            } else {
+                noResults.classList.add('hidden');
+            }
+
+            repos.forEach(repo => {
+                const langColor = languageColors[repo.language] || '#8b949e';
+                const hasHomepage = repo.homepage && repo.homepage.trim() !== '';
+
+                const cardHTML = `
+                    <div class="clay-card clay-card-interactive p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-10 h-10 clay-btn-secondary flex items-center justify-center text-indigo-500 font-bold">
+                                    <i class="fa-solid fa-folder-closed"></i>
+                                </div>
+                                <div class="flex items-center space-x-3 text-xs font-black text-slate-500">
+                                    <span title="Estrellas"><i class="fa-solid fa-star text-amber-400 mr-1"></i>${repo.stargazers_count}</span>
+                                    <span title="Forks"><i class="fa-solid fa-code-fork text-indigo-400 mr-1"></i>${repo.forks_count}</span>
+                                </div>
+                            </div>
+
+                            <h3 class="font-black text-xl text-slate-800 dark:text-white mb-2 line-clamp-1 hover:text-indigo-600 transition-colors">
+                                <a href="${repo.html_url}" target="_blank">${repo.name}</a>
+                            </h3>
+
+                            <p class="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-6 line-clamp-2 leading-relaxed">
+                                ${repo.description || 'Repositorio de código libre publicado en GitHub.'}
+                            </p>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-200/50 dark:border-slate-700/50 flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-3 h-3 rounded-full inline-block shadow" style="background-color: ${langColor};"></span>
+                                <span class="text-xs font-extrabold text-slate-600 dark:text-slate-300">${repo.language || 'Gral.'}</span>
+                            </div>
+
+                            <div class="flex items-center space-x-2">
+                                ${hasHomepage ? `
+                                    <a href="${repo.homepage}" target="_blank" title="Demo Web" class="w-8 h-8 clay-btn-secondary flex items-center justify-center text-xs text-indigo-600 hover:scale-110">
+                                        <i class="fa-solid fa-globe"></i>
+                                    </a>
+                                ` : ''}
+                                <a href="${repo.html_url}" target="_blank" title="Ver Código" class="w-8 h-8 clay-btn-secondary flex items-center justify-center text-xs text-slate-700 dark:text-slate-300 hover:scale-110">
+                                    <i class="fa-brands fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                grid.innerHTML += cardHTML;
+            });
+        }
+
+        // Búsqueda en tiempo real
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const filtered = allRepositories.filter(repo => 
+                repo.name.toLowerCase().includes(query) || 
+                (repo.description && repo.description.toLowerCase().includes(query)) ||
+                (repo.language && repo.language.toLowerCase().includes(query))
+            );
+            renderRepositories(filtered);
+        });
+
+        // Inicialización
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchGitHubProfile();
+            fetchGitHubRepos();
+        });
+    </script>
+</body>
+</html>
